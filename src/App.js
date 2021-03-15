@@ -12,8 +12,29 @@ class App extends Component {
                sort : ''
           };
      }
+
+    sortProducts(sort) {
+
+    }
+
+    filterProducts = (e) => {
+       if(e.target.value === "") {
+            this.setState({
+                 size : e.target.value,
+                 product: data.products
+            });
+       }else {
+            this.setState({
+                 size : e.target.value,
+                 products : data.products.filter(product => (
+                      product.availableSizes.indexOf(e.target.value) >= 0 
+                 ))
+            });
+       } 
+    }
+
   render() { 
-       const {products} = this.state;
+       const {products,size, sort} = this.state;
     return ( 
       <div className="grid-container">
           <header>
@@ -23,10 +44,14 @@ class App extends Component {
              <div className ="content">
                  <div className = "main">
                       <Filter
-                          count = {products.length} 
+                          count = {products.length}
+                          size = {size}
+                          sort = {sort} 
+                          filterProducts = {this.filterProducts}
+                          sortProducts = {this.sortProducts} 
                       />
                       <Product
-                          products={products} 
+                          products={products}
                       />
                  </div>
                  <div className = "sidebar">
