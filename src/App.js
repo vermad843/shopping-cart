@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Product from './components/Products';
 import data from './data.json';
+import Filter from './components/Filter';
 
 class App extends Component {
      constructor() {
@@ -21,6 +22,9 @@ class App extends Component {
           <main>
              <div className ="content">
                  <div className = "main">
+                      <Filter
+                          count = {products.length} 
+                      />
                       <Product
                           products={products} 
                       />
