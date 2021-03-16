@@ -2,20 +2,37 @@ import React, { Component } from 'react';
 import Product from './components/Products';
 import data from './data.json';
 import Filter from './components/Filter';
+import Cart from './components/Cart';
 
 class App extends Component {
      constructor() {
           super();
           this.state = {
                products : data.products,
+               cartItems : [],
                size : '',
                sort : ''
           };
      }
 
+    addToCart = (product) => {
+      const cartItems = this.state.cartItems.slice();
+      let alreadyInCart = false;
+      cartItems.forEach((item) => {
+         if(item._id === product._id) {
+            item.count++;
+            alreadyInCart = true;
+         }
+      });
+      if(!alreadyInCart) {
+         cartItems.push({...product, count: 1})
+      }
+      this.setState({cartItems});
+    } 
+
     sortProducts = (e) => {
          const sort = e.target.value;
-         this.setState((state) => ({
+         this.setState(() => ({
               sort : sort,
               products : this.state.products
                   .slice()
@@ -52,7 +69,7 @@ class App extends Component {
     }
 
   render() { 
-       const {products,size, sort} = this.state;
+       const {products,size, sort, cartItems} = this.state;
     return ( 
       <div className="grid-container">
           <header>
@@ -70,10 +87,11 @@ class App extends Component {
                       />
                       <Product
                           products={products}
+                          addToCart={this.addToCart}
                       />
                  </div>
                  <div className = "sidebar">
-                      Cart Items
+                      <Cart cartItems = {cartItems}/>
                  </div>
              </div>
           </main>
