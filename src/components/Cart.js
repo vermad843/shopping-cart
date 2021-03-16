@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import formatCurrency from '../util';
+
 
 function Cart(props) {
     const {cartItems} = props;
@@ -25,11 +27,15 @@ function Cart(props) {
                              </div>
                              <div>
                                  <div>{item.title}</div>
-                                 <button
-                                    onClick = {() => props.removeFromCart(item)}
-                                   >
+                                <div className = "right">
+                                   {formatCurrency(item.price)} x {item.count}{" "}
+                                   <button
+                                      className="button"
+                                      onClick = {() => props.removeFromCart(item)}
+                                      >
                                       Remove     
                                   </button>
+                                </div>
                              </div>
                          </li>
                      ))}
