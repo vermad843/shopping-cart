@@ -111,7 +111,8 @@ class App extends Component {
                  <div className = "sidebar">
                       <Cart 
                          cartItems = {cartItems}
-                         removeFromCart = {this.removeFromCart}     
+                         removeFromCart = {this.removeFromCart}
+                         createOrder ={this.createOrder}     
                          />
                  </div>
              </div>
