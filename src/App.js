@@ -17,13 +17,20 @@ class App extends Component {
           };
      }
 
+    createOrder = (order) => {
+      alert("Need to save order for " + order.name);
+    }
+
     removeFromCart = (product) => {
       const cartItems = this.state.cartItems.slice();
       this.setState({
          cartItems: cartItems.filter((x) => x._id !== product._id), 
       }); 
-      localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    };
+      localStorage.setItem(
+            "cartItems", 
+            JSON.stringify(cartItems.filter((x) => x._id !== product._id))
+           );
+          };
 
     addToCart = (product) => {
       const cartItems = this.state.cartItems.slice();
