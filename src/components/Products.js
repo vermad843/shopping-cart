@@ -74,8 +74,44 @@ class Products extends Component {
                                   >
                                     X
                                 </button>
-                                <div>
-                                    Modal
+                                <div className = "product-details">
+                                    <img
+                                        src = {product.image}
+                                        alt = {product.title}
+                                    />
+                                    <div className = "product-details-description">
+                                        <p>
+                                            <strong>{product.title}</strong> 
+                                        </p>
+                                        <p>
+                                            {product.description}
+                                        </p>
+                                        <p>
+                                            Available Sizes: {" "}
+                                            {product.availableSizes.map((x) => (
+                                                <span>
+                                                   {" "}
+                                                   <button className = "button">
+                                                        {x}
+                                                   </button>
+                                                </span>
+                                            ))}
+                                        </p>
+                                        <div className = "product-price">
+                                            <div>
+                                                {formatCurrency(product.price)}
+                                            </div>
+                                            <button 
+                                               className = "button primary"
+                                               onClick = {(e) => {
+                                                   this.props.addToCart(this.props.cartItems,product);
+                                                   this.closeModal();
+                                               }}
+                                               >
+                                                 Add To Cart
+                                            </button>  
+                                        </div>
+                                    </div>
                                 </div>
                            </Zoom>
                       </Modal>
