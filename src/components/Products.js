@@ -65,8 +65,15 @@ class Products extends Component {
                   product && (
                       <Modal
                          isOpen = {true}
+                         onRequestClose={this.closeModal}
                         >
                            <Zoom>
+                                <button
+                                   className = "close-modal"
+                                   onClick = {this.closeModal}
+                                  >
+                                    X
+                                </button>
                                 <div>
                                     Modal
                                 </div>
