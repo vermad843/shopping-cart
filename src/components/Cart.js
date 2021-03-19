@@ -90,6 +90,7 @@ class Cart extends Component {
              
              {
                  this.state.showCheckout && (
+                    <Fade>
                    <div className = "cart">  
                       <form onSubmit = {this.createOrder}>
                           <ul className = "form-container">
@@ -130,7 +131,8 @@ class Cart extends Component {
                              </li>
                           </ul>
                       </form>
-                   </div>  
+                   </div> 
+                </Fade> 
                  )
               }
              </div>
