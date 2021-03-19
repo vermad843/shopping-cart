@@ -1,9 +1,11 @@
 import React from 'react'
 import formatCurrency from '../util';
+import Fade from 'react-reveal/Fade';
 
 function Products(props) {
     return (
-        <>
+         <>
+           <Fade bottom cascade>
            <ul className = "products">
                  {
                      props.products.map(product => (
@@ -32,7 +34,8 @@ function Products(props) {
                          </li>
                      ))
                  }
-           </ul>  
+           </ul> 
+           </Fade> 
         </>
     )
 }
